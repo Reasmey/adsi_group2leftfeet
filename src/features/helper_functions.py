@@ -27,11 +27,11 @@ def load_sets(path='../data/processed/', val=False):
     import numpy as np
     import os.path
 
-    X_train = np.load(f'{path}X_train.npy') if os.path.isfile(f'{path}X_train.npy') else None
-    X_val   = np.load(f'{path}X_val.npy'  ) if os.path.isfile(f'{path}X_val.npy')   else None
-    X_test  = np.load(f'{path}X_test.npy' ) if os.path.isfile(f'{path}X_test.npy')  else None
-    y_train = np.load(f'{path}y_train.npy') if os.path.isfile(f'{path}y_train.npy') else None
-    y_val   = np.load(f'{path}y_val.npy'  ) if os.path.isfile(f'{path}y_val.npy')   else None
+    X_train = np.load(f'{path}X_train_new.npy') if os.path.isfile(f'{path}X_train_new.npy') else None
+    X_val   = np.load(f'{path}X_val_new.npy'  ) if os.path.isfile(f'{path}X_val_new.npy')   else None
+    X_test  = np.load(f'{path}X_test_new.npy' ) if os.path.isfile(f'{path}X_test_new.npy')  else None
+    y_train = np.load(f'{path}y_train_new.npy') if os.path.isfile(f'{path}y_train_new.npy') else None
+    y_val   = np.load(f'{path}y_val_new.npy'  ) if os.path.isfile(f'{path}y_val_new.npy')   else None
     
     return X_train, y_train, X_val, y_val, X_test
 
@@ -63,13 +63,11 @@ def save_model(model, name:str):
 
 
 # create output file for kaggle submission
-def create_output(X_test, X_preds):
+def create_output(X_preds):
     """Formats the predictions output for submission to kaggle
     
     Parameters
     ----------
-    X_test : numpy array
-        The X_test data loaded using load_sets used for predictions
     X_preds : numpy array
         The object created by .predict_proba method
     
@@ -83,22 +81,19 @@ def create_output(X_test, X_preds):
     
     # convert to dataframe
     df_test = pd.DataFrame(X_test)
-    # extract ID col only
-    id_col = df_test.iloc[:,[0]]
-    # rename it
-    id_col.rename(columns = {0:'Id'}, inplace = True)
-    # need to change Id to int
-    id_col = id_col.Id.astype(int)
+    
+    # read in Id csv
+    id_col = pd.read_csv('../data/interim/test_id_col.csv')
     
     # get probabilities from predict_proba ouput
-    probabilities = pd.DataFrame(y_test_preds_prob[:,1], columns = ['TARGET_5Yrs'])
+    probabilities = pd.DataFrame(X_preds[:,1], columns = ['TARGET_5Yrs'])
     
     # concat columns
     output = pd.concat([id_col,probabilities], axis=1)
     
     return output
 
-# print model metrics
+# print model metrics WORK IN PROGRESS
 def result_metrics(label, pred_probs):
     """Calculates and prints performance metrics
     
