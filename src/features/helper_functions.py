@@ -97,3 +97,36 @@ def create_output(X_test, X_preds):
     output = pd.concat([id_col,probabilities], axis=1)
     
     return output
+
+# print model metrics
+def result_metrics(label, pred_probs):
+    """Calculates and prints performance metrics
+    
+    Parameters
+    ----------
+    label : numpy array
+        The actual labels  
+    pred_probs : numpy array
+        The probabilites created by .predict_proba method
+    
+    Returns
+    -------
+    """   
+    from sklearn.metrics import roc_auc_score ,recall_score, precision_score, accuracy_score, classification_report
+    from sklearn.metrics import plot_confusion_matrix
+    
+    accuracy = accuracy_score(label, pred_probs)
+    precision=precision_score(label, pred_probs)
+    recall=recall_score(label, pred_probs)
+    roc=roc_auc_score(label, pred_probs)
+
+    print("Accuracy: %.2f%%" % (accuracy * 100.0))
+    print("Precision: %.2f%% " % (precision *100))
+    print("Recall: %.2f%% " % (recall * 100))
+    print("AUC: %.3f%% " % (roc *100))
+
+    class_report = classification_report(label, pred_probs)
+    print(class_report)
+    
+    plot_confusion_matrix(model_best_params, X_val, y_val, cmap=plt.cm.Blues)  
+    plt.show() 

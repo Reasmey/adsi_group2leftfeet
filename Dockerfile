@@ -4,7 +4,7 @@ RUN conda install xgboost
 
 RUN conda install pipenv
 
-RUN conda install imblearn
+RUN conda install imbalanced-learn
 
 RUN conda install seaborn
 
