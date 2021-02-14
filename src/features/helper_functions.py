@@ -94,15 +94,17 @@ def create_output(X_preds):
     return output
 
 # print model metrics WORK IN PROGRESS
-def result_metrics(label, pred_probs):
+def result_metrics(true_label, pred_label, pred_prob):
     """Calculates and prints performance metrics
     
     Parameters
     ----------
-    label : numpy array
+    true_label : numpy array
         The actual labels  
-    pred_probs : numpy array
-        The probabilites created by .predict_proba method
+    pred_label : numpy array
+        The labels predicted by .predict method
+    pred_prob : numpy array
+        The probabilites of class '1' created by .predict_proba method
     
     Returns
     -------
@@ -110,18 +112,17 @@ def result_metrics(label, pred_probs):
     from sklearn.metrics import roc_auc_score ,recall_score, precision_score, accuracy_score, classification_report
     from sklearn.metrics import plot_confusion_matrix
     
-    accuracy = accuracy_score(label, pred_probs)
-    precision=precision_score(label, pred_probs)
-    recall=recall_score(label, pred_probs)
-    roc=roc_auc_score(label, pred_probs)
+    accuracy = accuracy_score(true_label, pred_label)
+    precision=precision_score(true_label, pred_label)
+    recall=recall_score(true_label, pred_label)
+    roc=roc_auc_score(true_label, pred_prob[:,1])
 
     print("Accuracy: %.2f%%" % (accuracy * 100.0))
     print("Precision: %.2f%% " % (precision *100))
     print("Recall: %.2f%% " % (recall * 100))
-    print("AUC: %.3f%% " % (roc *100))
+    print("AUC using prediction probabilities: %.3f%% " % (roc *100))
 
-    class_report = classification_report(label, pred_probs)
+    class_report = classification_report(true_label, pred_label)
     print(class_report)
-    
-    plot_confusion_matrix(model_best_params, X_val, y_val, cmap=plt.cm.Blues)  
-    plt.show() 
+    print('Confusion Matrix')
+    print(confusion_matrix(true_label, pred_label)) 
