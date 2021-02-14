@@ -78,10 +78,7 @@ def create_output(X_preds):
     """
     import pandas as pd
     import numpy as np
-    
-    # convert to dataframe
-    df_test = pd.DataFrame(X_test)
-    
+
     # read in Id csv
     id_col = pd.read_csv('../data/interim/test_id_col.csv')
     
@@ -109,8 +106,7 @@ def result_metrics(true_label, pred_label, pred_prob):
     Returns
     -------
     """   
-    from sklearn.metrics import roc_auc_score ,recall_score, precision_score, accuracy_score, classification_report
-    from sklearn.metrics import plot_confusion_matrix
+    from sklearn.metrics import roc_auc_score ,recall_score, precision_score, accuracy_score, classification_report, confusion_matrix 
     
     accuracy = accuracy_score(true_label, pred_label)
     precision=precision_score(true_label, pred_label)

@@ -14,6 +14,8 @@ RUN conda install hyperopt
 
 RUN conda install graphviz
 
+RUN conda install scikit-learn
+
 ENV PYTHONPATH "${PYTHONPATH}:/home/jovyan/work"
 
 RUN echo "export PYTHONPATH=/home/jovyan/work" >> ~/.bashrc
