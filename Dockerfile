@@ -12,6 +12,8 @@ RUN conda install lime
 
 RUN conda install hyperopt
 
+RUN pipenv install hpsklearn
+
 RUN conda install graphviz
 
 RUN conda install scikit-learn
