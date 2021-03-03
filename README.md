@@ -3,6 +3,14 @@ adsi_group2leftfeet
 
 Repo for assignment 1 - Subject Advanced Data Science for Innovation Feb 2021
 
+Best model notebooks are in two parts:
+1. Group 2 Submission part 1.ipynb
+2. Group 2 Submission part 2.ipynb
+
+Please run part 1 to create the datasets and train the model, saving model artifacts. Then run part 2 to load model and make predictions.
+
+The helper_functions module resides in src/features.
+
 Project Organization
 ------------
 
