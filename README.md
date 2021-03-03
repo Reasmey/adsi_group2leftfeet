@@ -3,6 +3,16 @@ adsi_group2leftfeet
 
 Repo for assignment 1 - Subject Advanced Data Science for Innovation Feb 2021
 
+Notebooks - The final submission notebooks of Part D would be inside notebooks/ folder. There are two notebooks for the final submission named "Group 2 Submission part1.ipynb" and "Group 2 Submission part2.ipynb". 
+
+Data - All original datasets would be inside data/raw folder
+
+Processed data - All exported csv would be inside data/processed/ folder as .npy files
+
+Report - HTML copies of the notebooks would be inside reports/ folder
+
+The actual Kaggle Competition Report (Part D) is submitted as a separate file submission
+
 Project Organization
 ------------
 
