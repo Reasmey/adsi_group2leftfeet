@@ -29,7 +29,7 @@ def load_sets(path='../data/processed/', val=False):
 
     X_train = np.load(f'{path}X_train_up.npy') if os.path.isfile(f'{path}X_train_up.npy') else None
     X_val   = np.load(f'{path}X_val_up.npy'  ) if os.path.isfile(f'{path}X_val_up.npy')   else None
-    X_test  = np.load(f'{path}X_test_new.npy' ) if os.path.isfile(f'{path}X_test_new.npy')  else None
+    X_test  = np.load(f'{path}X_test_up.npy' ) if os.path.isfile(f'{path}X_test_up.npy')  else None
     y_train = np.load(f'{path}y_train_up.npy') if os.path.isfile(f'{path}y_train_up.npy') else None
     y_val   = np.load(f'{path}y_val_up.npy'  ) if os.path.isfile(f'{path}y_val_up.npy')   else None
     
